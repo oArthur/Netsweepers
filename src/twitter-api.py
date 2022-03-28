@@ -1,4 +1,3 @@
-from venv import main
 import tweepy
 import pandas as pd
 
@@ -18,29 +17,28 @@ Nas variavaies seguintes vamos declaclarar a quantidade de tweets que vamos busc
 Logo apos, criando o cursor que pegara o metedo user_timeline e passaremos o argumento id que se refere a uma conta do twitter.
 ja com o tweet_mode passamos o metodo que iremos querer o tweet neste caso vou usar a extended.'''
 def buscarTweets(search_for):
-    number_of_tweets = 30
+    number_of_tweets = 10
     tweets = []
     likes = []
     time_post = []
-    cursor = tweepy.Cursor(api.search_tweets, q=search_for, tweet_mode='extended', result_type='mixed', lang='pt').items(number_of_tweets)
+    cursor = tweepy.Cursor(api.search_tweets, q=search_for.encode('utf-8'), tweet_mode='extended', result_type='mixed', lang='pt').items(number_of_tweets)
 
     '''Criando um laco de repeticao que ira pegar os tweets, likes e horario do post. Logo depois criamos uma lista com todos esses dados.'''
     for tweet in cursor:
         tweets.append(tweet.full_text)
         likes.append(tweet.favorite_count)
         time_post.append(tweet.created_at)
-    df = pd.DataFrame({'tweet': tweets, 'likes': likes, 'time': time_post})
 
+    #Criando o DataFrame.
+    df = pd.DataFrame({'tweet': tweets, 'likes': likes, 'time': time_post})
+    
     #Filtrando tweets, removendo os Retweets.
     """df = df[~df['tweet'].str.contains('RT')]
     df = df.reset_index(drop=True)"""
 
 
-    #Escrevendo os tweets em tweets.txt
-    with open('./src/tweets.txt', 'a', encoding="utf-8") as f:
-        for tweets in df['tweet']:
-            f.write('Tweet: "'+tweets +'"'+ '\n'*2)
-        f.close()
+    #Escrevendo tweets em tweets.csv
+    df.to_csv('./src/data_tweets.csv', index=False, mode='a' ,header=False)
 
     #return df
 
