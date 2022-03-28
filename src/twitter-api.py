@@ -17,12 +17,12 @@ api = tweepy.API(auth)
 Nas variavaies seguintes vamos declaclarar a quantidade de tweets que vamos buscar e vamos criar as listas para armazenar essas informcoes.
 Logo apos, criando o cursor que pegara o metedo user_timeline e passaremos o argumento id que se refere a uma conta do twitter.
 ja com o tweet_mode passamos o metodo que iremos querer o tweet neste caso vou usar a extended.'''
-def buscarTweets(serch_for):
-    number_of_tweets = 15
+def buscarTweets(search_for):
+    number_of_tweets = 30
     tweets = []
     likes = []
     time_post = []
-    cursor = tweepy.Cursor(api.search_tweets, q=serch_for, tweet_mode='extended', result_type='recent', lang='pt').items(number_of_tweets)
+    cursor = tweepy.Cursor(api.search_tweets, q=search_for, tweet_mode='extended', result_type='mixed', lang='pt').items(number_of_tweets)
 
     '''Criando um laco de repeticao que ira pegar os tweets, likes e horario do post. Logo depois criamos uma lista com todos esses dados.'''
     for tweet in cursor:
@@ -35,7 +35,6 @@ def buscarTweets(serch_for):
     """df = df[~df['tweet'].str.contains('RT')]
     df = df.reset_index(drop=True)"""
 
-    #print(df)
 
     #Escrevendo os tweets em tweets.txt
     with open('./src/tweets.txt', 'a', encoding="utf-8") as f:
@@ -43,7 +42,10 @@ def buscarTweets(serch_for):
             f.write('Tweet: "'+tweets +'"'+ '\n'*2)
         f.close()
 
+    #return df
 
-serch_for = '#forabolsonaro'
+search_for = '#forabolsonaro'
 if __name__ == '__main__':
-    buscarTweets(serch_for)
+    buscarTweets(search_for)
+    #print(buscarTweets(search_for))
+
