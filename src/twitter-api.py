@@ -40,6 +40,7 @@ def buscarTweets(search_for):
     #Escrevendo tweets em tweets.csv
     df.to_csv('./src/data_tweets.csv', index=False, mode='a' ,header=False)
 
+    #return df
 
 search_for = '#forabolsonaro'
 if __name__ == '__main__':
