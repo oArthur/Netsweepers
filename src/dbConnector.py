@@ -50,19 +50,3 @@ def testConnect(tbname,cursor):
     result = cursor.fetchall()
     for i in result:
         print(i)
-# Funções 'main' abaixo estão sendo utilizadas para finalidade de testes, serão removidos na versão final
-if __name__ == '__main__':
-    with open('./src/sql_info.txt', 'r') as tfile:
-        user = tfile.readline().strip("\n")
-        password = tfile.readline().strip("\n")
-        host = tfile.readline().strip("\n")
-        database = tfile.readline().strip("\n")
-        tbname = tfile.readline().strip("\n")
-    cnx = mysql.connector.connect(user=user, password=password, host=host, database=database)
-    # Criando banco de dados e cursor para operações
-    cursor = cnx.cursor()
-    # Inserindo dados
-    '''data = "..." # aqui chamaremos a função buscarTweets, após filtrar o conteúdo
-    insertValues(tbname,data,cursor)'''
-    testConnect(tbname,cursor)
-    cnx.close()
