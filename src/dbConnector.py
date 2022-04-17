@@ -2,13 +2,13 @@ from venv import main
 from pandas.core import api
 import mysql.connector
 from twitterSearch import buscarTweets
-# Função para criar database
+# Função para criar database, caso não tenha sido criada ainda
 def createdb(dbname, cursor):
     try:
         cursor.execute("CREATE DATABASE IF NOT EXISTS {};".format(dbname))
     except mysql.connector.Error as err:
             print("Erro ao criar banco de dados: {};".format(err))
-# Função para criar tabela
+# Função para criar tabela, caso também não tenha sido criada
 def createTable(tbname, table_structure, cursor):
     try:
         cursor.execute("CREATE TABLE IF NOT EXISTS {}({});".format(tbname,table_structure))
@@ -20,7 +20,7 @@ def insertValues(tbname,data,cursor):
         cursor.execute("INSERT INTO {} VALUES({});".format(tbname,data))
     except mysql.connector.Error as err:
         print("Erro ao inserir dados: {}".format(err))
-# Função ara deletar valores
+# Função para deletar valores
 def deleteValues(tbname,deleting,cursor):
     try:
         print(cursor.execute("SELECT * FROM {} WHERE idt={};".format(tbname,deleting)))
@@ -35,25 +35,34 @@ def deleteValues(tbname,deleting,cursor):
         print("Erro ao deletar dados: {}".format(err))
     except TypeError as err:
         print("Valor inválido digitado.")
-# Funçã para buscar dados (NÃO IMPLEMENTADO)
-def searchValues(tbname, index, cursor):
+# Função para buscar dados, a maneira utilizada para pesquisa é uma query padrão do sql, porém exige conhecimento do BD o que invalida a utilização pelo usuário, necessita de aperfeiçoamento
+def searchValues(tbname, sqlCondition, cursor):
     try:
-        pass
+        cursor.execute("SELECT * FROM {} WHERE {}".format(tbname, sqlCondition))
+        result = cursor.fetchall()
+        for i in result:
+            print(i)
     except mysql.connector.Error as err:
         print("Erro na operação: {}".format(err))
+# Função para testar conexão
+def testConnect(tbname,cursor):
+    cursor.execute("SELECT * FROM {}".format(tbname))
+    result = cursor.fetchall()
+    for i in result:
+        print(i)
 # Funções 'main' abaixo estão sendo utilizadas para finalidade de testes, serão removidos na versão final
 if __name__ == '__main__':
-    cnx = mysql.connector.connect(user='****', password='********', host='127.0.0.1', database='twitterdb')
+    with open('./src/sql_info.txt', 'r') as tfile:
+        user = tfile.readline().strip("\n")
+        password = tfile.readline().strip("\n")
+        host = tfile.readline().strip("\n")
+        database = tfile.readline().strip("\n")
+        tbname = tfile.readline().strip("\n")
+    cnx = mysql.connector.connect(user=user, password=password, host=host, database=database)
     # Criando banco de dados e cursor para operações
     cursor = cnx.cursor()
-    dbname = "twitterdb"
-    # Criando db
-    table_structure = "'idt' INT NOT NULL AUTO_INCREMENT,'hora-tweet' DATETIME NOT NULL, 'conteudo' VARCHAR(255) NOT NULL, 'opiniao' ENUM('P','N') NOT NULL, 'regiao' VARCHAR(255), PRIMARY KEY(idt)"
-    createdb(dbname,cursor)
-    # Criando tabela
-    tbname="Tweets"
-    createTable(tbname, table_structure,cursor)
     # Inserindo dados
-    data = "..." # aqui chamaremos a função buscarTweets, após filtrar o conteúdo
-    insertValues(tbname,data,cursor)
+    '''data = "..." # aqui chamaremos a função buscarTweets, após filtrar o conteúdo
+    insertValues(tbname,data,cursor)'''
+    testConnect(tbname,cursor)
     cnx.close()

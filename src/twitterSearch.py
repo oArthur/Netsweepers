@@ -44,6 +44,6 @@ def buscarTweets(search_for):
         f.close()'''
 
 
-# search_for = '#forabolsonaro' Exemplo de pesquisa
+search_for = '#forabolsonaro' #Exemplo de pesquisa
 if __name__ == '__main__':
     buscarTweets(search_for)
