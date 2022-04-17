@@ -1,1 +1,4 @@
-twitter-tokens.txt
+/keys
+# a pasta acima contém senhas e outros arquivos privados, logo não devem ser compartilhados
+/src/__pycache__/
+# arquivo do ambiente de execução
