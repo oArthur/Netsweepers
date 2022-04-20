@@ -18,6 +18,10 @@ with open('keys/twitter-tokens.txt', 'r') as ttfile:
     consumer_secret = ttfile.readline().strip("\n")
 # Criando a conexão
 cnx = mysql.connector.connect(user=user, password=password, host=host, database=database)
+# Criando cursor para operação
+cursor = cnx.cursor()
 # Definindo qual o critério que a API irá utilizar para varrer
 search_for="#LulaPresidente"
 print(buscarTweets(search_for,15,consumer_key,consumer_secret,access_token,access_token_secret))# Testando
+# Sempre fechando a conexão com o BD após as operações
+cnx.close()

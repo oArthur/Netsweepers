@@ -17,6 +17,7 @@ def createTable(tbname, table_structure, cursor):
 # Função para inserir dados
 def insertValues(tbname,data,cursor):
     try:
+        # colunas: idt (pk, auto_increment, not null)| tweets(not null) | numLikes(not null) | data(not null) | regiao (FK, not null) | favoreceCandidato(not null)
         cursor.execute("INSERT INTO {} VALUES({});".format(tbname,data))
     except mysql.connector.Error as err:
         print("Erro ao inserir dados: {}".format(err))
