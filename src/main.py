@@ -10,14 +10,10 @@ with open('keys/sql_info.txt', 'r') as tfile:
         database = tfile.readline().strip("\n")
         tbname = tfile.readline().strip("\n")
 # Também iremos autenticar a nossa API utilizando as nossas keys
-# obs: estamos autenticando todas as funções de maneira externa por questões de segurança, as autenticações serão feitas ao chamar a função e não dentro da mesma
-with open('keys/twitter-tokens.txt', 'r') as ttfile:
-    access_token = ttfile.readline().strip("\n")
-    access_token_secret = ttfile.readline().strip("\n")
-    consumer_key = ttfile.readline().strip("\n")
-    consumer_secret = ttfile.readline().strip("\n")
+
 # Criando a conexão
-cnx = mysql.connector.connect(user=user, password=password, host=host, database=database)
+'''cnx = mysql.connector.connect(user=user, password=password, host=host, database=database)'''
 # Definindo qual o critério que a API irá utilizar para varrer
-search_for="#LulaPresidente"
-print(buscarTweets(search_for,15,consumer_key,consumer_secret,access_token,access_token_secret))# Testando
+search_for = "Lula"
+number_of_tweets = 10
+buscarTweets(search_for,number_of_tweets)
