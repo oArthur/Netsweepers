@@ -3,3 +3,4 @@
 /src/__pycache__/
 # arquivo do ambiente de execução
 .DS_store
+keys.tar.xz
