@@ -6,8 +6,7 @@ This script will read and analyze info that twitterSearch.py will return
 import re
 
 import pandas as pd
-
-dataFrame = pd.DataFrame(pd.read_csv('/home/vinicius/Documents/projects/Netsweepers/data/data_tweets.csv')) # Caminho para o csv
+ # Caminho para o csv
 # print(dataFrame) para testes
 '''
 embaixo temos analyzedTweets que serve para armazenar os tweets que foram filtrados, um filtro customizado será adicionado mais a frente, likes que armazena o número de likes de CADA tweet, ap
@@ -31,7 +30,6 @@ def sortData(dataFrame):
 def calculateRelevance(analyzed):
     try:
         for i in range(len(analyzed)):
-            relevance.append(analyzed[i]*likes[i])
-    except len(analyzedTweets)!=len(likes):
+            relevance.append(analyzed[i]*likes[i])  
+    except len(analyzedTweets)!=len(likes) or IndexError:
         print("Error during sorting process, please run again")
-afterAnalysis = sortData(dataFrame)
