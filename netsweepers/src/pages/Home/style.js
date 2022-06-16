@@ -40,6 +40,15 @@ export const Label = styled.Text`
     align-self: flex-start;
     margin-left: 8%;    
 `
+export const ViewDropdown = styled.View`
+    flex: 1;
+    align-self: flex-end;
+    postion: absolute;
+    width: 50%;
+    bottom: 10px;
+    background-color: #000;
+    justify-content: flex-end;
+`
 
 export const CardsContainer = styled.FlatList`
     width: 100%;
@@ -58,4 +67,5 @@ export const Link = styled.TouchableOpacity`
     justify-content: center;
     margin-bottom: 10%;
 `
+
 

@@ -26,3 +26,14 @@ export const CardList: CardComp[] = [
     number: 0,
     }
 ]
+
+export function SomaLista(): number {
+    let soma = 0;
+    CardList.forEach(element => {
+        soma += element.number;
+    });
+    return soma;
+}
+export function convertNumber(number) {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
