@@ -34,8 +34,8 @@ def buscarTweets(hashtag,num):
     df = pd.DataFrame({'tweet': tweets, 'likes': likes, 'time': time_post})
     
     #Filtrando tweets, removendo os Retweets.
-    """df = df[~df['tweet'].str.contains('RT')]
-    df = df.reset_index(drop=True)"""
+    df = df[~df['tweet'].str.contains('RT')]
+    df = df.reset_index(drop=True)
 
 
     #Escrevendo tweets em tweets.csv

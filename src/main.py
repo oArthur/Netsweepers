@@ -18,8 +18,9 @@ with open('keys/sql_info.txt', 'r') as tfile:
 '''cnx = mysql.connector.connect(user=user, password=password, host=host, database=database)'''
 # Definindo qual o critério que a API irá utilizar para varrer
 search_for = "Lula"
-number_of_tweets = 10
+number_of_tweets = 20
+#buscarTweets(search_for,number_of_tweets)
 df = pd.DataFrame(pd.read_csv('data/data_tweets.csv'))
-buscarTweets(search_for,number_of_tweets)
-sorted = [sortData(df)]
-os.system("wordcloud_cli --text data/data_tweets.csv --imagefile data/wordcloud.png") #gerando um wordcloud
+sorted = sortData(df)
+os.system("wordcloud_cli --text data/data_tweets.csv --imagefile data/wordcloud.png") #gerando um wordcloud com as informações do csv
+dbConnector.createdb()

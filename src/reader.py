@@ -26,10 +26,11 @@ def sortData(dataFrame):
             analyzedTweets.append(current)
             likes.append(currentLike)
     print("done, filtered {} tweets".format(len(analyzedTweets)))
-    return analyzedTweets
+    favoredTweets=len(analyzedTweets)
+    return favoredTweets
 def calculateRelevance(analyzed):
     try:
         for i in range(len(analyzed)):
-            relevance.append(analyzed[i]*likes[i])  
+            relevance.append(analyzedTweets[i]*likes[i])  
     except len(analyzedTweets)!=len(likes) or IndexError:
         print("Error during sorting process, please run again")
