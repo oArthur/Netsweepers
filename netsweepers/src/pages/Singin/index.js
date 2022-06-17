@@ -1,8 +1,10 @@
 import React from 'react';
 import { KeyboardView, Title, Desc, Container, Input, ButtonSubmit, TextSubmit, Label, Line, ForgotPass, RememberMe } from './styles';
 import Header from '../../components/Header';
+import { useNavigation } from '@react-navigation/native';
 
 function Singin() {
+    const navigation = useNavigation();
     return (
         <KeyboardView
             behavior={Platform.OS === 'ios' ? "padding" : "height"}>
@@ -22,7 +24,7 @@ function Singin() {
                 <ForgotPass>Forgot password?</ForgotPass>
                 <Line></Line>
                 <RememberMe>✓ Remember me</RememberMe>
-                <ButtonSubmit>
+                <ButtonSubmit onPress={() => navigation.navigate("Home")}>
                     <TextSubmit>Log in</TextSubmit>
                 </ButtonSubmit>
 

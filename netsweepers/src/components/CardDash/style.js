@@ -4,29 +4,28 @@ export const Card = styled.TouchableOpacity`
     background-color: #fff;
     border-radius: 9px;
     margin-top: 5%;
-    width: 140px;
-    height: 65%;
+    width: 90%;
+    height: 130px;
     padding: 15px;
     justify-content: space-between;
-    align-items: center;
     margin-left: 20px;
 `
-export const CardTitle = styled.Text`
+export const Title = styled.Text`
     color: #000;
     font-size: 16px;
-    text-align: center;
     font-weight: bold;
 `
-export const CardNum = styled.Text`
+export const Num = styled.Text`
     color: #000;
     font-size: 16px;
-    text-align: center;
     font-weight: bold;
+    text-align: right;
+    z-index: 1;
+    bottom: 22px;
+    
 `
-export const CardTextLink = styled.Text`
-    color: #000;
-    font-size: 15px;
-    text-align: center;
-    font-weight: bold;
-    text-decoration: underline #000;
-    `;
+export const Image = styled.ImageBackground`
+    width: 100%;
+    height: 91px;
+    bottom: 20px;
+`

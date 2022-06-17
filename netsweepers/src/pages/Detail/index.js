@@ -5,6 +5,7 @@ function Detail() {
  return (
    <View>
         <Text>Pagina Detalhe</Text>
+
    </View>
   );
 }

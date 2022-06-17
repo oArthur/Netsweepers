@@ -6,6 +6,8 @@ import CardsItem from "../../components/CardsItem";
 import { ListRenderItemInfo } from 'react-native';
 import { CardComp, CardList, SomaLista, convertNumber } from '../../Data/data';
 import { SeparatorItem } from '../../components/SeparadorItem/SeparadorItem';
+import { useNavigation } from '@react-navigation/native';
+import { propsStack } from '../../routes/Models';
 
 import Dropdown from '../../components/Dropdown';
 
@@ -13,6 +15,7 @@ export default function Home() {
   function renderItem({ item }: ListRenderItemInfo<CardComp>) {
     return <CardsItem{...item} />
   }
+  const navigation = useNavigation<propsStack>();
 
   return (
     <Container>
@@ -26,7 +29,7 @@ export default function Home() {
       <TitleNum>{convertNumber(SomaLista())}</TitleNum>
       <ViewDropdown><Dropdown /></ViewDropdown>
       <CardsContainer horizontal ItemSeparadorComponent={SeparatorItem} data={CardList} keyExtractor={(item) => item.title} renderItem={renderItem} />
-      <Link><TitleBottom>My Dashboard ➤ </TitleBottom></Link>
+      <Link onPress={() => navigation.navigate("Dashboard")}><TitleBottom>My Dashboard ➤ </TitleBottom></Link>
     </Container>
   );
 }

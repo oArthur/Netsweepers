@@ -8,7 +8,7 @@ export const CardList: CardComp[] = [
     {
     id: 1,
     title: "Twitter",
-    number: 58527,
+    number: 50000,
     },
     {
     id: 2,
