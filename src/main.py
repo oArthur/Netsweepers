@@ -14,6 +14,6 @@ with open('keys/sql_info.txt', 'r') as tfile:
 # Criando a conexão
 '''cnx = mysql.connector.connect(user=user, password=password, host=host, database=database)'''
 # Definindo qual o critério que a API irá utilizar para varrer
-search_for = "Lula"
+search_for = "#python"
 number_of_tweets = 10
 buscarTweets(search_for,number_of_tweets)
