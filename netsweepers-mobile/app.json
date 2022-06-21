@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "netsweepers",
-    "slug": "netsweepers",
+    "name": "netsweepers-mobile",
+    "slug": "netsweepers-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
